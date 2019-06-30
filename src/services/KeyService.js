@@ -1,3 +1,5 @@
+import eckey from 'ec-key';
+
 const PUBLIC_KEY_STRING = 'PublicKey';
 const PRIVATE_KEY_STRING = 'PrivateKey';
 
@@ -25,12 +27,14 @@ export default {
         localStorage.removeItem(PRIVATE_KEY_STRING);
     },
     isKeyPairValid(publicKey, privateKey){
-
+        //TODO
+        var key = new ECKey('','');
     },
     isPublicKeyValid(publicKey) {
-
+        //TODO
+        return true;
     },
     isPrivateKeyValid(privateKey){
-
+        //TODO
     }
 }

@@ -35,9 +35,16 @@
             onSubmit(e){
                 e.preventDefault();
 
-                this.$router.push({
-                    path: 'private'
-                });
+                //TODO Provide ACTUAL Public Key
+                if(KeyService.isPublicKeyValid('')){
+                    KeyService.savePublicKey('');
+
+                    this.$router.push({
+                        path: 'private'
+                    });
+                } else {
+                    //TODO: Prompt if invalid
+                }
             }
         }
     }
