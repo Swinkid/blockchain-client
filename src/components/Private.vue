@@ -3,7 +3,7 @@
     <div>
 
         <h1>Scan private Key</h1>
-        <p>Before we begin, please scan your private key.</p>
+        <p>Using the provided scanner, scan the QR code given to you on arrival.</p>
 
         <b-form @submit="onSubmit">
             <b-form-group id="public-key-group" label-for="public-key" class="public-form">
@@ -20,6 +20,9 @@
 </template>
 
 <script>
+
+    import KeyService from '@/services/KeyService';
+
     export default {
         name: "Private",
         data () {
@@ -33,17 +36,22 @@
             onSubmit(e){
                 e.preventDefault();
 
+                if(KeyService.isK){
+                    this.$router.push({
+                        path: 'candidates'
+                    });
+                } else {
+
+                }
                 //TODO: Validate PrivateKey
-                this.$router.push({
-                    path: 'candidates'
-                });
+
             }
         }
     }
 </script>
 
 <style scoped>
-    /*.public-form {
+    .public-form {
       clip-path: inset(100%);
       clip: rect(1px 1px 1px 1px);
       clip: rect(1px, 1px, 1px, 1px);
@@ -52,5 +60,5 @@
       position: absolute;
       white-space: nowrap;
       width: 1px;
-    }*/
+    }
 </style>

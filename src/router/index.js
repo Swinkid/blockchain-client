@@ -23,10 +23,7 @@ export default new Router({
         {
             path: '/setup',
             name: 'Setup',
-            component: Setup,
-            beforeEnter: (to, from, next) => {
-
-            }
+            component: Setup
         },
         {
             path: '/private',

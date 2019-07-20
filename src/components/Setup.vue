@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-form @submit="onSubmit">
-            <b-form-group id="public-key-group" label-for="node-url" class="url-form">
+            <b-form-group id="public-key-group" label="Node URL" label-for="node-url" class="url-form">
                 <b-form-input
                     id="node-url"
                     v-model="form.nodeUrl"

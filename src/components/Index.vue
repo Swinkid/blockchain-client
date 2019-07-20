@@ -1,6 +1,8 @@
 <template>
     <div>
-
+        <h1>Blockchain Voting</h1>
+        <p>This tool is designed to replace paper voting. As always, your vote is kept anonymous. Click start to begin.</p>
+        <b-button to="/private">Start</b-button>
     </div>
 </template>
 
