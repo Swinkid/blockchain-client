@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const NODE_URL_STRING = "NodeUrl";
+const CANDIDATE_STRING = "Candidates";
 
 export default {
 
@@ -33,6 +34,18 @@ export default {
      */
     isNodeSet(){
         return !!this.getNode();
+    },
+
+    getCandidates(){
+        return JSON.parse(localStorage.getItem(CANDIDATE_STRING));
+    },
+
+    saveCandidates(candidates){
+        localStorage.setItem(CANDIDATE_STRING, JSON.stringify(candidates));
+    },
+
+    addCandidate(candidate){
+        let candidates = this.getCandidates();
     }
 
 }

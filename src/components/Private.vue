@@ -36,15 +36,13 @@
             onSubmit(e){
                 e.preventDefault();
 
-                if(KeyService.isK){
+                if(KeyService.isKeyValid(this.form.private)){
                     this.$router.push({
                         path: 'candidates'
                     });
                 } else {
-
+                    //TODO Catch mismatch
                 }
-                //TODO: Validate PrivateKey
-
             }
         }
     }
