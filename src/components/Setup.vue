@@ -30,7 +30,7 @@
                         <b-button @click="addRow">+</b-button>
                     </div>
                     <div class="col col-1">
-                        <b-button @click="removeRow">-</b-button>
+                        <b-button @click="removeRow(index)">-</b-button>
                     </div>
                 </div>
 
@@ -66,11 +66,6 @@
             onSubmit(e){
                 e.preventDefault();
 
-                //this.lines.forEach((line) => {
-                //    BlockchainService.addCandidate(line.name, line.key);
-                //});
-
-
                 BlockchainService.setCandidates(this.lines);
                 BlockchainService.setNode(this.form.nodeUrl);
 
@@ -83,9 +78,9 @@
                     id: 0
                 })
             },
-            removeRow(){
-                if(this.lines.length <= 1){
-
+            removeRow(index){
+                if(this.lines.length > 1){
+                    this.lines.splice(index, 1);
                 }
             }
         }
