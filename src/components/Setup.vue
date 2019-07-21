@@ -15,22 +15,25 @@
                 ></b-form-input>
             </b-form-group>
 
-
             <h3>Candidate Settings</h3>
             <b-form-group v-for="(line, index) in lines" v-bind:key="index">
 
                 <div class="row">
-                    <div class="col col-5">
+                    <div class="col col-3">
                         <b-form-input placeholder="Candidate Name" v-model="lines[index].name" :value="lines[index].name || ''" required></b-form-input>
                     </div>
-                    <div class="col col-5">
-                        <b-form-input placeholder="Candidate Public Key" v-model="lines[index].key" :value="lines[index].name || ''" required></b-form-input>
+                    <div class="col col-3">
+                        <b-form-input placeholder="Party" v-model="lines[index].party" :value="lines[index].party || ''" required></b-form-input>
                     </div>
-                    <div class="col col-1">
-                        <b-button @click="addRow">+</b-button>
+                    <div class="col col-2">
+                        <b-form-input placeholder="Photo URL" v-model="lines[index].photo" :value="lines[index].photo || ''" required></b-form-input>
                     </div>
-                    <div class="col col-1">
-                        <b-button @click="removeRow(index)">-</b-button>
+                    <div class="col col-2">
+                        <b-form-input placeholder="Public Key" v-model="lines[index].key" :value="lines[index].name || ''" required></b-form-input>
+                    </div>
+                    <div class="col col-2">
+                        <b-button @click="addRow">Add</b-button>
+                        <b-button @click="removeRow(index)">Remove</b-button>
                     </div>
                 </div>
 
@@ -50,7 +53,9 @@
             return {
                 lines: [{
                     name: '',
-                    key: ''
+                    party: '',
+                    key: '',
+                    photo: ''
                 }],
 
                 form: {
@@ -60,7 +65,11 @@
         },
         mounted(){
             this.form.nodeUrl = BlockchainService.getNode();
-            this.lines = BlockchainService.getCandidates();
+
+            if(!BlockchainService.getCandidates().length <= 0){
+                this.lines = BlockchainService.getCandidates();
+            }
+
         },
         methods: {
             onSubmit(e){
