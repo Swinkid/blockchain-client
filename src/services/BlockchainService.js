@@ -25,7 +25,11 @@ export default {
      * Gets the URL of the node transactions are being sent too.
      */
     getNode(){
-        return localStorage.getItem(NODE_URL_STRING);
+        if(localStorage.getItem(NODE_URL_STRING) === null){
+            return "";
+        } else {
+            return localStorage.getItem(NODE_URL_STRING);
+        }
     },
 
     /**
@@ -37,7 +41,15 @@ export default {
     },
 
     getCandidates(){
-        return JSON.parse(localStorage.getItem(CANDIDATE_STRING));
+        let candidates = JSON.parse(localStorage.getItem(CANDIDATE_STRING));
+
+
+        if(candidates === null || candidates === undefined){
+            return [];
+        } else {
+            return candidates;
+        }
+
     },
 
     saveCandidates(candidates){
@@ -53,6 +65,10 @@ export default {
         });
 
         this.saveCandidates(candidates);
+    },
+
+    countCandidates(){
+        return this.getCandidates().length;
     }
 
 }

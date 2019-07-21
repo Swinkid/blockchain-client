@@ -10,6 +10,7 @@
                     id="node-url"
                     v-model="form.nodeUrl"
                     placeholder="Node URL"
+                    :value="form.nodeUrl"
                     required
                 ></b-form-input>
             </b-form-group>
@@ -20,10 +21,10 @@
 
                 <div class="row">
                     <div class="col col-5">
-                        <b-form-input placeholder="Candidate Name" v-model="lines[index].name" required></b-form-input>
+                        <b-form-input placeholder="Candidate Name" v-model="lines[index].name" :value="lines[index].name || ''" required></b-form-input>
                     </div>
                     <div class="col col-5">
-                        <b-form-input placeholder="Candidate Public Key" v-model="lines[index].key" required></b-form-input>
+                        <b-form-input placeholder="Candidate Public Key" v-model="lines[index].key" :value="lines[index].name || ''" required></b-form-input>
                     </div>
                     <div class="col col-1">
                         <b-button @click="addRow">+</b-button>
@@ -56,6 +57,10 @@
                     nodeUrl: '',
                 }
             }
+        },
+        mounted(){
+            this.form.nodeUrl = BlockchainService.getNode();
+            this.lines = BlockchainService.getCandidates();
         },
         methods: {
             onSubmit(e){
