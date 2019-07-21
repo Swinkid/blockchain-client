@@ -58,8 +58,21 @@
 </template>
 
 <script>
+    import BlockchainService from '@/services/BlockchainService';
+
     export default {
-        name: "Candidates"
+        name: "Candidates",
+        mounted (){
+            this.candidates = BlockchainService.getCandidates();
+        },
+        data () {
+            return {
+                candidates: []
+            }
+        },
+        methods: {
+
+        }
     }
 </script>
 

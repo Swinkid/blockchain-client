@@ -44,8 +44,15 @@ export default {
         localStorage.setItem(CANDIDATE_STRING, JSON.stringify(candidates));
     },
 
-    addCandidate(candidate){
+    addCandidate(name, publicKey){
         let candidates = this.getCandidates();
+
+        candidates.push({
+            name: name,
+            key: publicKey
+        });
+
+        this.saveCandidates(candidates);
     }
 
 }
