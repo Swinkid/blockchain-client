@@ -46,11 +46,7 @@ export default new Router({
         {
             path: '/completed',
             name: 'Completed',
-            component: Complete,
-            beforeEnter: (to, from, next) => {
-                isKeySaved(to, from, next);
-                isClientSetup(to, from, next);
-            }
+            component: Complete
         }
     ],
     //TODO: Authentication Guard to redirect if step not complete

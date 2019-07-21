@@ -2,7 +2,9 @@
     <div>
         <h1 class="text-center">Candidates</h1>
         <p class="text-center">Select the candidate you wish to vote for.</p>
-
+        <b-alert v-model="error.visible" variant="danger" dismissible>
+            {{error.message}}
+        </b-alert>
         <b-row>
             <b-col class="col col-6" v-for="(candidate, index) in candidates"  style="margin-bottom: 1em">
                 <b-card no-body>
@@ -27,6 +29,7 @@
 
 <script>
     import BlockchainService from '@/services/BlockchainService';
+    import KeyService from "@/services/KeyService";
 
     export default {
         name: "Candidates",
@@ -35,11 +38,26 @@
         },
         data () {
             return {
+                error: {
+                    message: "",
+                    visible: false
+                },
                 candidates: []
             }
         },
         methods: {
+            castVote(key){
 
+                if(BlockchainService.castVote(key, KeyService.getPrivateKey())){
+                    this.$router.push({
+                        path: 'completed'
+                    });
+                } else {
+                    this.error.visible = true;
+                    this.error.message = "Your key was invalid or has already been used."
+                }
+
+            }
         }
     }
 </script>

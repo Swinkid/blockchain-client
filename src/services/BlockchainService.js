@@ -1,4 +1,5 @@
 import axios from 'axios';
+import ECKey from 'ec-key';
 
 const NODE_URL_STRING = "NodeUrl";
 const CANDIDATE_STRING = "Candidates";
@@ -73,6 +74,27 @@ export default {
 
     countCandidates(){
         return this.getCandidates().length;
+    },
+
+    /**
+     *
+     * @param candidatePublicKey
+     * @param privateKey
+     */
+    castVote(candidatePublicKey, privateKey) {
+        let key = new ECKey(privateKey);
+
+        let data = {
+            sender: key.asPublicECKey().toString('spki'),
+            reciever: candidatePublicKey,
+            privateKey: key.toString('pkcs8')
+        };
+
+        axios.post(`${this.getNode()}/transaction`, data).then((result) => {
+            return true;
+        }).catch((error) => {
+           return false;
+        });
     }
 
 }
