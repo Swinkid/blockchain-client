@@ -67,6 +67,10 @@ export default {
         this.saveCandidates(candidates);
     },
 
+    setCandidates(candidates){
+      this.saveCandidates(candidates);
+    },
+
     countCandidates(){
         return this.getCandidates().length;
     }

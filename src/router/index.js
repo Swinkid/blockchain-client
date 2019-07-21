@@ -38,8 +38,9 @@ export default new Router({
             name: 'Candidates',
             component: Candidates,
             beforeEnter: (to, from, next) => {
-                isKeySaved(to, from, next);
-                isClientSetup(to, from, next);
+                next()
+                //isKeySaved(to, from, next);
+                //isClientSetup(to, from, next);
             }
         },
         {

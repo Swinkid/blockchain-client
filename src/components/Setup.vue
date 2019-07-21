@@ -66,10 +66,12 @@
             onSubmit(e){
                 e.preventDefault();
 
-                this.lines.forEach((line) => {
-                    BlockchainService.addCandidate(line.name, line.key);
-                });
+                //this.lines.forEach((line) => {
+                //    BlockchainService.addCandidate(line.name, line.key);
+                //});
 
+
+                BlockchainService.setCandidates(this.lines);
                 BlockchainService.setNode(this.form.nodeUrl);
 
                 this.$router.push({
