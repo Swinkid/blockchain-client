@@ -1,20 +1,21 @@
 <template>
     <div>
         <h1>Candidates</h1>
+        <p>Select the candidate you wish to vote for.</p>
 
-        <b-row v-for="(candidate, index) in candidates">
-            <b-col>
-                <b-card no-body class="overflow-hidden" style="max-width: 540px;">
+        <b-row>
+            <b-col class="col col-6" v-for="(candidate, index) in candidates"  style="margin-bottom: 1em">
+                <b-card no-body>
                     <b-row no-gutters>
                         <b-col md="6">
-                            <b-card-img src="https://picsum.photos/400/400/?image=20" class="rounded-0"></b-card-img>
+                            <b-card-img :src="candidate.photo" class="rounded-0"></b-card-img>
                         </b-col>
                         <b-col md="6">
-                            <b-card-body title="Candidate A">
+                            <b-card-body :title="candidate.name">
                                 <b-card-text>
-                                    Some Fake Party
+                                    {{ candidate.party }}
                                 </b-card-text>
-                                <b-button href="#" variant="primary">Cast Vote</b-button>
+                                <b-button @click="castVote(candidate.key)" variant="primary">Cast Vote</b-button>
                             </b-card-body>
                         </b-col>
                     </b-row>
