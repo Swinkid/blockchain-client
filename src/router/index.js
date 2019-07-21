@@ -38,18 +38,15 @@ export default new Router({
             name: 'Candidates',
             component: Candidates,
             beforeEnter: (to, from, next) => {
-                isKeySaved(to, from, next);
-                isClientSetup(to, from, next);
+                next()
+                //isKeySaved(to, from, next);
+                //isClientSetup(to, from, next);
             }
         },
         {
             path: '/completed',
             name: 'Completed',
-            component: Complete,
-            beforeEnter: (to, from, next) => {
-                isKeySaved(to, from, next);
-                isClientSetup(to, from, next);
-            }
+            component: Complete
         }
     ],
     //TODO: Authentication Guard to redirect if step not complete
@@ -67,7 +64,7 @@ function isKeySaved(to, from, next) {
 }
 
 function isClientSetup(to, from, next) {
-    if(!BlockchainService.isNodeSet()){
+    if(!BlockchainService.isNodeSet() && !BlockchainService.countCandidates() > 0){
         next({
             path: '/setup'
         });

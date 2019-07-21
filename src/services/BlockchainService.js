@@ -1,4 +1,5 @@
 import axios from 'axios';
+import ECKey from 'ec-key';
 
 const NODE_URL_STRING = "NodeUrl";
 const CANDIDATE_STRING = "Candidates";
@@ -25,7 +26,11 @@ export default {
      * Gets the URL of the node transactions are being sent too.
      */
     getNode(){
-        return localStorage.getItem(NODE_URL_STRING);
+        if(localStorage.getItem(NODE_URL_STRING) === null){
+            return "";
+        } else {
+            return localStorage.getItem(NODE_URL_STRING);
+        }
     },
 
     /**
@@ -37,15 +42,59 @@ export default {
     },
 
     getCandidates(){
-        return JSON.parse(localStorage.getItem(CANDIDATE_STRING));
+        let candidates = JSON.parse(localStorage.getItem(CANDIDATE_STRING));
+
+
+        if(candidates === null || candidates === undefined){
+            return [];
+        } else {
+            return candidates;
+        }
+
     },
 
     saveCandidates(candidates){
         localStorage.setItem(CANDIDATE_STRING, JSON.stringify(candidates));
     },
 
-    addCandidate(candidate){
+    addCandidate(name, publicKey){
         let candidates = this.getCandidates();
+
+        candidates.push({
+            name: name,
+            key: publicKey
+        });
+
+        this.saveCandidates(candidates);
+    },
+
+    setCandidates(candidates){
+      this.saveCandidates(candidates);
+    },
+
+    countCandidates(){
+        return this.getCandidates().length;
+    },
+
+    /**
+     *
+     * @param candidatePublicKey
+     * @param privateKey
+     */
+    castVote(candidatePublicKey, privateKey) {
+        let key = new ECKey(privateKey);
+
+        let data = {
+            sender: key.asPublicECKey().toString('spki'),
+            reciever: candidatePublicKey,
+            privateKey: key.toString('pkcs8')
+        };
+
+        axios.post(`${this.getNode()}/transaction`, data).then((result) => {
+            return true;
+        }).catch((error) => {
+           return false;
+        });
     }
 
 }
