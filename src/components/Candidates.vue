@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1>Candidates</h1>
-        <p>Select the candidate you wish to vote for.</p>
+        <h1 class="text-center">Candidates</h1>
+        <p class="text-center">Select the candidate you wish to vote for.</p>
 
         <b-row>
             <b-col class="col col-6" v-for="(candidate, index) in candidates"  style="margin-bottom: 1em">

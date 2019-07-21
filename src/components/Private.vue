@@ -4,7 +4,9 @@
 
         <h1>Scan private Key</h1>
         <p>Using the provided scanner, scan the QR code given to you on arrival.</p>
-
+        <b-alert v-model="error.visible" variant="danger" dismissible>
+           {{error.message}}
+        </b-alert>
         <b-form @submit="onSubmit">
             <b-form-group id="public-key-group" label-for="public-key" class="public-form">
                 <b-form-input v-autofocus
@@ -27,6 +29,10 @@
         name: "Private",
         data () {
             return {
+                error: {
+                    message: "",
+                    visible: false
+                },
                 form: {
                     private: '',
                 }
@@ -41,7 +47,8 @@
                         path: 'candidates'
                     });
                 } else {
-                    //TODO Catch mismatch
+                    this.error.visible = true;
+                    this.error.message = "Your key was invalid or has already been used."
                 }
             }
         }
