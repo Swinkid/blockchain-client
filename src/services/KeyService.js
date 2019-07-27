@@ -41,7 +41,7 @@ export default {
      * @param privateKey
      */
     isKeyValid(privateKey){
-        let key = new ECKey(privateKey, 'pem');
+        let key = new ECKey(privateKey, 'pkcs8');
 
         axios.post(`http://${BlockchainService.getNode()}/transaction/user`, {
             publicKey: key.asPublicECKey().toString('spki') //TODO
