@@ -41,17 +41,21 @@ export default {
      * @param privateKey
      */
     isKeyValid(privateKey){
-        let key = new ECKey(privateKey, 'pkcs8');
+       return new Promise((resolve) => {
+           let key = new ECKey(privateKey, 'pkcs8');
 
-        axios.post(`http://${BlockchainService.getNode()}/transaction/user`, {
-            publicKey: key.asPublicECKey().toString('spki') //TODO
-        }).then((result)=> {
+           axios.post(`http://${BlockchainService.getNode()}/transaction/user`, {
+               publicKey: key.asPublicECKey().toString('spki') //TODO
+           }).then((result)=> {
 
-            return result.data.valid === true;
+               console.log(result);
 
-        }).catch((error) => {
-            return false;
-        });
+               return resolve(result.data.valid === true);
+
+           }).catch((error) => {
+               return resolve(false);
+           });
+       });
     },
     isPrivateKeySet(){
         return !!this.getPrivateKey();

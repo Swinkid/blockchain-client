@@ -42,14 +42,19 @@
             onSubmit(e){
                 e.preventDefault();
 
-                if(KeyService.isKeyValid(this.form.private)){
-                    this.$router.push({
-                        path: 'candidates'
-                    });
-                } else {
-                    this.error.visible = true;
-                    this.error.message = "Your key was invalid or has already been used."
-                }
+                KeyService.isKeyValid(this.form.private).then((valid) => {
+					console.log(valid);
+
+					if(valid){
+						this.$router.push({
+							path: 'candidates'
+						});
+					} else {
+						this.error.visible = true;
+						this.error.message = "Your key was invalid or has already been used."
+					}
+                });
+
             }
         }
     }
