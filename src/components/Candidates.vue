@@ -47,16 +47,16 @@
         },
         methods: {
             castVote(key){
-
-                if(BlockchainService.castVote(key, KeyService.getPrivateKey())){
-                    this.$router.push({
-                        path: 'completed'
-                    });
-                } else {
-                    this.error.visible = true;
-                    this.error.message = "Your key was invalid or has already been used."
-                }
-
+            	BlockchainService.castVote(key, KeyService.getPrivateKey()).then((result) => {
+					if(result){
+						this.$router.push({
+							path: 'completed'
+						});
+					} else {
+						this.error.visible = true;
+						this.error.message = "Your key was invalid or has already been used."
+					}
+                })
             }
         }
     }

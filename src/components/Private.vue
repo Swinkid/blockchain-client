@@ -46,6 +46,7 @@
 					console.log(valid);
 
 					if(valid){
+						KeyService.savePrivateKey(this.form.private);
 						this.$router.push({
 							path: 'candidates'
 						});
