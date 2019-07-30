@@ -91,7 +91,7 @@ export default {
                 privateKey: key.toString('pkcs8')
             };
 
-            axios.post(`${this.getNode()}/transaction`, data).then((result) => {
+            axios.post(`http://${this.getNode()}/transaction`, data).then((result) => {
                 return resolve(true);
             }).catch((error) => {
                 return resolve(false);
