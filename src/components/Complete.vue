@@ -8,8 +8,13 @@
 
 <script>
     export default {
-        name: "Complete"
-    }
+        name: "Complete",
+        mounted() {
+			return {
+
+			}
+		}
+	}
 </script>
 
 <style scoped>

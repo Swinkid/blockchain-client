@@ -1,7 +1,11 @@
-import {shallow} from '@vue/test-utils'
+import {createLocalVue, shallowMount} from '@vue/test-utils'
+import BootstrapVue from "bootstrap-vue";
 import Setup from "@/components/Setup";
 
-const wrapper = shallow(Setup);
+const localVue = createLocalVue()
+localVue.use(BootstrapVue)
+
+const wrapper = shallowMount(Setup, { localVue });
 
 describe('Setup.vue', () => {
     it('Checking H1', function () {
