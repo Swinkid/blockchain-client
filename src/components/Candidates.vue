@@ -17,7 +17,7 @@
                                 <b-card-text>
                                     {{ candidate.party }}
                                 </b-card-text>
-                                <b-button @click="castVote(candidate.key)" variant="primary">Cast Vote</b-button>
+                                <b-button @click="castVote(candidate.key)" id="submit" variant="primary">Cast Vote</b-button>
                             </b-card-body>
                         </b-col>
                     </b-row>

@@ -20,26 +20,26 @@
 
                 <div class="row">
                     <div class="col col-3">
-                        <b-form-input placeholder="Candidate Name" v-model="lines[index].name" :value="lines[index].name || ''" required></b-form-input>
+                        <b-form-input placeholder="Candidate Name" v-model="lines[index].name" :value="lines[index].name || ''"></b-form-input>
                     </div>
                     <div class="col col-3">
-                        <b-form-input placeholder="Party" v-model="lines[index].party" :value="lines[index].party || ''" required></b-form-input>
+                        <b-form-input placeholder="Party" v-model="lines[index].party" :value="lines[index].party || ''"></b-form-input>
                     </div>
                     <div class="col col-2">
-                        <b-form-input placeholder="Photo URL" v-model="lines[index].photo" :value="lines[index].photo || ''" required></b-form-input>
+                        <b-form-input placeholder="Photo URL" v-model="lines[index].photo" :value="lines[index].photo || ''"></b-form-input>
                     </div>
                     <div class="col col-2">
-                        <b-form-input placeholder="Public Key" v-model="lines[index].key" :value="lines[index].name || ''" required></b-form-input>
+                        <b-form-input placeholder="Public Key" v-model="lines[index].key" :value="lines[index].name || ''"></b-form-input>
                     </div>
                     <div class="col col-2">
-                        <b-button @click="addRow">Add</b-button>
-                        <b-button @click="removeRow(index)">Remove</b-button>
+                        <b-button class="add" @click="addRow">Add</b-button>
+                        <b-button class="del" @click="removeRow(index)">Remove</b-button>
                     </div>
                 </div>
 
             </b-form-group>
 
-            <b-button type="submit" variant="primary">Submit</b-button>
+            <b-button type="submit" class="submit" variant="primary">Submit</b-button>
         </b-form>
     </div>
 </template>
