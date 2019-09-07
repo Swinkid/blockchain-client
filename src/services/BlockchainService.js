@@ -41,6 +41,10 @@ export default {
         return !!this.getNode();
     },
 
+    /**
+     * Returns list of candidates
+     * @returns {Array|any} Array of candidates
+     */
     getCandidates(){
         let candidates = JSON.parse(localStorage.getItem(CANDIDATE_STRING));
 
@@ -53,25 +57,26 @@ export default {
 
     },
 
+    /**
+     * Saves candidates to storage
+     * @param candidates
+     */
     saveCandidates(candidates){
         localStorage.setItem(CANDIDATE_STRING, JSON.stringify(candidates));
     },
 
-    addCandidate(name, publicKey){
-        let candidates = this.getCandidates();
-
-        candidates.push({
-            name: name,
-            key: publicKey
-        });
-
-        this.saveCandidates(candidates);
-    },
-
+    /**
+     * Set candidates
+     * @param candidates
+     */
     setCandidates(candidates){
       this.saveCandidates(candidates);
     },
 
+    /**
+     * Count Candidate Array
+     * @returns {number}
+     */
     countCandidates(){
         return this.getCandidates().length;
     },

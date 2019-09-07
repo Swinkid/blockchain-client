@@ -72,7 +72,11 @@
 
         },
         methods: {
-            onSubmit(e){
+			/**
+             * Handle setup submit
+			 * @param e
+			 */
+			onSubmit(e){
                 e.preventDefault();
 
                 BlockchainService.setCandidates(this.lines);
@@ -82,13 +86,21 @@
                     path: '/'
                 });
             },
-            addRow(){
-                this.lines.push({
+			/**
+             * Add row to candidate list
+			 */
+			addRow(){
+				this.lines.push({
                     id: 0
                 })
             },
-            removeRow(index){
-                if(this.lines.length > 1){
+
+			/**
+             * Remove row from candidate list
+			 * @param index
+			 */
+			removeRow(index){
+				if(this.lines.length > 1){
                     this.lines.splice(index, 1);
                 }
             }

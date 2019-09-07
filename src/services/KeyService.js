@@ -57,6 +57,10 @@ export default {
            });
        });
     },
+    /**
+     * Check if private key is set
+     * @returns {boolean}
+     */
     isPrivateKeySet(){
         return !!this.getPrivateKey();
     }

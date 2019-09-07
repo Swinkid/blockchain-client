@@ -39,7 +39,12 @@
             }
         },
         methods: {
-            onSubmit(e){
+
+			/**
+             * Handle private key submit
+			 * @param e
+			 */
+			onSubmit(e){
                 e.preventDefault();
 
                 KeyService.isKeyValid(this.form.private).then((valid) => {

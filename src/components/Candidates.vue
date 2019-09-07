@@ -46,7 +46,12 @@
             }
         },
         methods: {
-            castVote(key){
+
+			/**
+             * Handle 'cast vote' button
+			 * @param key Users Key
+			 */
+			castVote(key){
             	BlockchainService.castVote(key, KeyService.getPrivateKey()).then((result) => {
 					if(result){
 						this.$router.push({
