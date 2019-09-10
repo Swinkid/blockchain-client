@@ -12,6 +12,7 @@ Vue.config.productionTip = false;
 Vue.directive("autofocus", autofocus);
 Vue.use(BootstrapVue);
 
+
 new Vue({
     el: '#app',
     router,

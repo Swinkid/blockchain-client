@@ -16,7 +16,28 @@
             </b-form-group>
 
             <h3>Vote Settings</h3>
+            <b-form-group>
+                <h4>Start Date / Time</h4>
+                <div class="row">
+                    <div class="col col-6">
+                        <b-form-input v-model="form.startDate" name="start-date" type="date"></b-form-input>
+                    </div>
+                    <div class="col col-6">
+                        <b-form-input v-model="form.startTime" name="start-time" type="time"></b-form-input>
+                    </div>
+                </div>
 
+                <h4>End Date / Time</h4>
+                <div class="row">
+                    <div class="col col-6">
+                        <b-form-input v-model="form.endDate" name="end-date" type="date"></b-form-input>
+                    </div>
+                    <div class="col col-6">
+                        <b-form-input v-model="form.endTime" name="end-time" type="time"></b-form-input>
+                    </div>
+                </div>
+
+            </b-form-group>
             <h3>Candidate Settings</h3>
             <b-form-group v-for="(line, index) in lines" v-bind:key="index">
 
@@ -49,6 +70,7 @@
 <script>
     import BlockchainService from "@/services/BlockchainService";
 
+
     export default {
         name: "Setup",
         data () {
@@ -62,6 +84,10 @@
 
                 form: {
                     nodeUrl: '',
+                    startDate: null,
+                    startTime: null,
+                    endDate: null,
+                    endTime: null
                 }
             }
         },
