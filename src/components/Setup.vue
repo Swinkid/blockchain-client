@@ -15,6 +15,8 @@
                 ></b-form-input>
             </b-form-group>
 
+            <h3>Vote Settings</h3>
+
             <h3>Candidate Settings</h3>
             <b-form-group v-for="(line, index) in lines" v-bind:key="index">
 
