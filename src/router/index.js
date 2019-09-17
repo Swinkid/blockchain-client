@@ -34,6 +34,7 @@ export default new Router({
             component: Private,
             beforeEnter: (to, from, next) => {
                 isClientSetup(to, from, next);
+                isDuringSession(to, from, next);
             }
         },
         {
@@ -41,15 +42,18 @@ export default new Router({
             name: 'Candidates',
             component: Candidates,
             beforeEnter: (to, from, next) => {
-                next()
-                //isKeySaved(to, from, next);
-                //isClientSetup(to, from, next);
+                isKeySaved(to, from, next);
+                isClientSetup(to, from, next);
+                isDuringSession(to, from, next);
             }
         },
         {
             path: '/completed',
             name: 'Completed',
-            component: Complete
+            component: Complete,
+            beforeEnter: (to, from, next) => {
+                isDuringSession(to, from, next);
+            }
         },
         {
             path: '/notstarted',
