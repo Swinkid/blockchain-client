@@ -7,6 +7,7 @@ import Complete from "@/components/Complete";
 import KeyService from "@/services/KeyService";
 import BlockchainService from "@/services/BlockchainService";
 import Setup from "@/components/Setup";
+import NotStarted from "@/components/NotStarted";
 
 Vue.use(Router);
 
@@ -47,6 +48,11 @@ export default new Router({
             path: '/completed',
             name: 'Completed',
             component: Complete
+        },
+        {
+            path: '/notstarted',
+            name: 'Not Started',
+            component: NotStarted
         }
     ],
     //TODO: Authentication Guard to redirect if step not complete
