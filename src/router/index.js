@@ -6,6 +6,7 @@ import Candidates from "@/components/Candidates";
 import Complete from "@/components/Complete";
 import KeyService from "@/services/KeyService";
 import BlockchainService from "@/services/BlockchainService";
+import VoteService from "@/services/VoteService";
 import Setup from "@/components/Setup";
 import NotStarted from "@/components/NotStarted";
 
@@ -19,6 +20,7 @@ export default new Router({
             component: Index,
             beforeEnter: (to, from, next) => {
                 isClientSetup(to, from, next);
+                isDuringSession(to, from, next);
             }
         },
         {
@@ -77,4 +79,14 @@ function isClientSetup(to, from, next) {
     } else {
         next();
     }
+}
+
+function isDuringSession(to, from, next) {
+   if(VoteService.isDuringSession()){
+       next();
+   } else {
+       next({
+           path: '/notstarted'
+       });
+   }
 }

@@ -6,6 +6,8 @@
 </template>
 
 <script>
+    import VoteService from "@/services/VoteService";
+
 	export default {
 		name: "NotStarted",
         data(){
@@ -19,7 +21,11 @@
         },
         methods: {
 			invokeTimer: function() {
-				console.log('tick')
+				if(VoteService.isDuringSession()){
+					this.$router.push({
+						path: '/'
+					});
+                }
             }
         },
         beforeDestroy() {

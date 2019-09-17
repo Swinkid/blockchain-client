@@ -46,12 +46,12 @@ export default {
         return this.timeStringFromDate(this.getEnd());
     },
     isSessionStarted(){
-        return false;
+        return this.getStart().getTime() < new Date().getTime();
     },
     isSessionEnded(){
-        return true;
+        return new Date().getTime() > this.getEnd().getTime();
     },
     isDuringSession(){
-        return false;
+        return (this.isSessionStarted() === true) && (this.isSessionEnded() === false);
     }
 }

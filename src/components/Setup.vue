@@ -124,10 +124,10 @@
                 BlockchainService.setNode(this.form.nodeUrl);
 
 
-                let sD = VoteService.parseDate(this.form.startDate, this.form.startTime);
-                let eD = VoteService.parseDate(this.form.endDate, this.form.endTime);
+                let startDate = VoteService.parseDate(this.form.startDate, this.form.startTime);
+                let endDate = VoteService.parseDate(this.form.endDate, this.form.endTime);
 
-                if(sD.getTime() < eD.getTime()){
+                if(startDate.getTime() < endDate.getTime()){
 					VoteService.setStart(this.form.startDate, this.form.startTime);
 					VoteService.setEnd(this.form.endDate, this.form.endTime);
 
