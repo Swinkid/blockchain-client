@@ -5,15 +5,32 @@
 </template>
 
 <script>
+    import BlockchainService from "../services/BlockchainService";
+
     export default {
         name: "Stats",
         data() {
             return {
-                chain: []
+                chain: [],
+                nodes: []
             }
         },
         mounted () {
+            BlockchainService.getNodes().then((result) => {
+               if(result){
+                   this.nodes = result;
+               } else {
+                   this.nodes = [];
+               }
+            });
 
+            BlockchainService.getChain().then((result) => {
+                if(result){
+                    this.chain = result;
+                } else {
+                    this.chain = [];
+                }
+            })
         }
     }
 </script>
