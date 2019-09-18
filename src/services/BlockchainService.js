@@ -102,6 +102,26 @@ export default {
                 return resolve(false);
             });
         })
+    },
+
+    getChain(){
+        return new Promise((resolve) => {
+           axios.get(`http://${this.getNode()}/blockchain`).then((result) => {
+               return resolve(result);
+           }).catch((error) => {
+              return resolve(false);
+           });
+        });
+    },
+
+    getNodes(){
+        return new Promise((resolve) => {
+            axios.get(`http://${this.getNode()}/nodes`).then((result) => {
+                return resolve(result);
+            }).catch((error) => {
+                return resolve(false);
+            });
+        });
     }
 
 }
