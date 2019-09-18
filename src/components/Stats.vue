@@ -48,6 +48,8 @@
             },
             analyzeChain(chain){
                 let candidates = BlockchainService.getCandidates();
+
+
                 //TODO
             }
         }
