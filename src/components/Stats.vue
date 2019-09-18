@@ -22,21 +22,33 @@
         },
         methods: {
             fetchStats(){
+                this.nodes = this.fetchNodes();
+                this.chain = this.fetchChain();
+            },
+            fetchNodes(){
                 BlockchainService.getNodes().then((result) => {
                     if(result){
-                        this.nodes = result;
+                        return result;
                     } else {
-                        this.nodes = [];
+                        return [];
                     }
                 });
-
+            },
+            fetchChain(){
                 BlockchainService.getChain().then((result) => {
                     if(result){
-                        this.chain = result;
+                        return result;
                     } else {
-                        this.chain = [];
+                        return [];
                     }
                 })
+            },
+            fetchTransactionPool(){
+                //TODO
+            },
+            analyzeChain(chain){
+                let candidates = BlockchainService.getCandidates();
+                //TODO
             }
         }
     }
