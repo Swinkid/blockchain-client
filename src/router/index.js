@@ -9,6 +9,7 @@ import BlockchainService from "@/services/BlockchainService";
 import VoteService from "@/services/VoteService";
 import Setup from "@/components/Setup";
 import NotStarted from "@/components/NotStarted";
+import Stats from "../components/Stats";
 
 Vue.use(Router);
 
@@ -59,7 +60,13 @@ export default new Router({
             path: '/notstarted',
             name: 'Not Started',
             component: NotStarted
+        },
+        {
+            path: '/stats',
+            name: 'Stats',
+            component: Stats
         }
+
     ],
     //TODO: Authentication Guard to redirect if step not complete
     mode: 'history'
