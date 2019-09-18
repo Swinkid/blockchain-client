@@ -27,7 +27,8 @@
             },
             fetchNodes(){
                 BlockchainService.getNodes().then((result) => {
-                    if(result){
+					console.log(result);
+                	if(result){
                         return result;
                     } else {
                         return [];
@@ -36,6 +37,7 @@
             },
             fetchChain(){
                 BlockchainService.getChain().then((result) => {
+                	console.log(result);
                     if(result){
                         return result;
                     } else {
