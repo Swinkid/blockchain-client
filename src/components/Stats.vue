@@ -1,8 +1,9 @@
 <template>
     <div>
         <h1>Stats</h1>
-        <p>Node Count: {{ nodes.length }}</p>
+        <p>Nodes Online: {{ nodes.length }}</p>
         <p>Block Count: {{ chain.length }}</p>
+        <p>Unspent Votes: </p>
     </div>
 </template>
 
@@ -17,42 +18,61 @@
                 nodes: []
             }
         },
-        mounted () {
-            this.fetchStats();
+        created () {
+            this.fetchChain().then(() => {
+				this.fetchNodes().then(() => {
+					this.analyzeChain(this.chain);
+                });
+            });
         },
         methods: {
-            fetchStats(){
-                this.nodes = this.fetchNodes();
-                this.chain = this.fetchChain();
-            },
             fetchNodes(){
-                BlockchainService.getNodes().then((result) => {
-					console.log(result);
-                	if(result){
-                        return result;
-                    } else {
-                        return [];
-                    }
+                return new Promise((resolve, reject) => {
+					BlockchainService.getNodes().then((result) => {
+						if(result){
+							this.nodes = result.data;
+							resolve(true);
+						} else {
+							this.nodes = [];
+							resolve(false);
+						}
+					});
                 });
             },
             fetchChain(){
-                BlockchainService.getChain().then((result) => {
-                	console.log(result);
-                    if(result){
-                        return result;
-                    } else {
-                        return [];
-                    }
-                })
-            },
-            fetchTransactionPool(){
-                //TODO
+            	return new Promise((resolve, reject) => {
+					BlockchainService.getChain().then((result) => {
+						if(result){
+							this.chain =  result.data;
+							resolve(true);
+						} else {
+							this.nodes = [];
+							resolve(false)
+						}
+					});
+                });
             },
             analyzeChain(chain){
                 let candidates = BlockchainService.getCandidates();
 
+                candidates.forEach((candidate) => {
+                	candidate.votes = 0;
+                });
 
-                //TODO
+                chain.forEach((block) => {
+                	block._data.forEach((transaction) => {
+
+                		candidates.forEach((candidate) => {
+
+                            if(candidate.key === transaction.receiver){
+                            	candidate.votes += 1;
+                            }
+
+                        })
+                    });
+                });
+
+                console.log(candidates);
             }
         }
     }
