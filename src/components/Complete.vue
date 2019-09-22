@@ -2,7 +2,7 @@
     <div>
         <h1>Vote Submitted</h1>
         <p>Vote submitted. You'll be automatically logged out.</p>
-        <p>Click here if you're not automatically redirected.</p>
+        <p>Click <a href="/">here</a> if you're not automatically redirected.</p>
     </div>
 </template>
 
@@ -13,6 +13,19 @@
 			return {
 
 			}
+		},
+		data () {
+			return {
+        		canRedirect: false,
+                redirectTime: 3000
+            }
+        },
+        created() {
+        	setTimeout(() => {
+				this.$router.push({
+					path: '/'
+				});
+            }, this.redirectTime);
 		}
 	}
 </script>
